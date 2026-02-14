@@ -1,17 +1,172 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import PrimaryNav from '../components/PrimaryNav.astro';
 ---
 
 <Layout>
-	<Welcome />
-	<ul>
-  <li><a href="/estructura_carta">Estructura carta</a></li>
-  <li><a href="/fases_turno">Fases turno</a></li>
-  <li><a href="/tipo_carta">Tipo de carta</a></li>
-  <li><a href="/inicio_novato">Inicio novato</a></li>
-</ul>
+	<PrimaryNav />
+	<main class="page">
+		<header class="hero">
+			<h1>Learning Yugi</h1>
+			<p>Aprende Yu-Gi-Oh! desde cero o mejora tu juego con guias y recursos.</p>
+		</header>
+
+		<section class="quick-links">
+			<h2>Empieza por aqui</h2>
+			<div class="cards">
+				<a href="/estructura_carta" class="card">
+					<h3>Estructura de carta</h3>
+					<p>Descubre cada parte de una carta y su funcion.</p>
+				</a>
+				<a href="/fases_turno" class="card">
+					<h3>Fases del turno</h3>
+					<p>Aprende como se desarrolla un turno completo.</p>
+				</a>
+				<a href="/tipo_carta" class="card">
+					<h3>Tipos de carta</h3>
+					<p>Monstruos, magicas, trampas y mucho mas.</p>
+				</a>
+				<a href="/inicio_novato" class="card">
+					<h3>Inicio para novatos</h3>
+					<p>Guia para empezar sin gastar de mas.</p>
+				</a>
+			</div>
+		</section>
+
+		<section class="videos">
+			<h2>Videos recomendados</h2>
+			<ul>
+				<li>
+					<a href="https://www.youtube.com/watch?v=y33Q5KwnsBs" target="_blank" rel="noopener"
+						>Best moment yugioh - Doro monsta cado</a
+					>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/watch?v=f5VlJbRIYAc" target="_blank" rel="noopener"
+						>Pelicula yugioh abridged</a
+					>
+				</li>
+				<li>
+					<a href="https://www.youtube.com/watch?v=Tdx2mcaLfgw" target="_blank" rel="noopener"
+						>Yugi VS Atem</a
+					>
+				</li>
+				<li>
+					<a
+						href="https://www.youtube.com/watch?v=XSg0lcC9lzg&list=RDXSg0lcC9lzg&start_radio=1"
+						target="_blank"
+						rel="noopener">Yugi vs Jaden</a
+					>
+				</li>
+			</ul>
+		</section>
+	</main>
 </Layout>
+
+<style>
+	:global(body) {
+		font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+		background: radial-gradient(circle at top, #f7f2e8, #e6dccb 70%);
+		color: #1d1a14;
+	}
+
+	.page {
+		padding: 32px 20px 64px;
+		max-width: 1040px;
+		margin: 0 auto;
+	}
+
+	.hero {
+		text-align: center;
+		padding: 48px 20px 32px;
+	}
+
+	.hero h1 {
+		font-size: 38px;
+		margin: 0 0 8px;
+		letter-spacing: 0.5px;
+	}
+
+	.hero p {
+		font-size: 18px;
+		color: #51452e;
+		margin: 0;
+	}
+
+	.quick-links,
+	.videos {
+		margin-top: 48px;
+	}
+
+	.quick-links h2,
+	.videos h2 {
+		font-size: 24px;
+		margin-bottom: 16px;
+	}
+
+	.cards {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 16px;
+	}
+
+	.card {
+		display: block;
+		padding: 20px;
+		background: rgba(255, 255, 255, 0.9);
+		border: 1px solid rgba(60, 46, 22, 0.15);
+		border-radius: 16px;
+		text-decoration: none;
+		color: inherit;
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+		box-shadow: 0 12px 24px rgba(55, 38, 18, 0.08);
+	}
+
+	.card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 16px 32px rgba(55, 38, 18, 0.12);
+	}
+
+	.card h3 {
+		margin: 0 0 6px;
+		font-size: 18px;
+		color: #2b2113;
+	}
+
+	.card p {
+		margin: 0;
+		font-size: 14px;
+		color: #5a3f1b;
+	}
+
+	.videos ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.videos li {
+		margin-bottom: 10px;
+	}
+
+	.videos a {
+		color: #5a3f1b;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(90, 63, 27, 0.3);
+		transition: border-color 0.2s ease;
+	}
+
+	.videos a:hover {
+		border-color: #5a3f1b;
+	}
+
+	@media (max-width: 680px) {
+		.hero h1 {
+			font-size: 28px;
+		}
+
+		.hero p {
+			font-size: 16px;
+		}
+	}
+</style>

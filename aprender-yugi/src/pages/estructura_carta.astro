@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import PrimaryNav from '../components/PrimaryNav.astro';
 import cartaAgua from '../assets/cartas_estructura/carta_agua.png';
 import cartaDivino from '../assets/cartas_estructura/carta_divino.png';
 import cartaFuego from '../assets/cartas_estructura/carta_fuego.png';
@@ -28,10 +29,11 @@ const atributos = [
 ---
 
 <Layout>
+	<PrimaryNav />
 	<main class="page">
 		<section class="card" id="carta">
 			<h1>Estructura de carta</h1>
-			<p class="hint">Pulsa el area del atributo para ver los iconos.</p>
+			<p class="hint">Pulsa las areas de la carta para ver informacion detallada.</p>
 			<div class="card-image">
 				<img
 					id="carta-principal"
@@ -205,8 +207,8 @@ const atributos = [
 		min-height: 100vh;
 		display: grid;
 		place-items: center;
-		padding: 32px 16px 64px;
-		gap: 28px;
+		padding: 20px 12px 64px;
+		gap: 24px;
 	}
 
 	.card {
@@ -216,21 +218,23 @@ const atributos = [
 		box-shadow:
 			0 20px 40px rgba(55, 38, 18, 0.15),
 			inset 0 1px 0 rgba(255, 255, 255, 0.8);
-		padding: 24px;
+		padding: 20px;
 		max-width: 380px;
+		width: 100%;
 		text-align: center;
 	}
 
 	.card h1 {
 		margin: 0 0 8px;
-		font-size: 24px;
+		font-size: 22px;
 		letter-spacing: 0.5px;
 	}
 
 	.hint {
-		margin: 0 0 16px;
-		font-size: 14px;
+		margin: 0 0 14px;
+		font-size: 13px;
 		color: #51452e;
+		line-height: 1.4;
 	}
 
 	.card-image {
@@ -245,9 +249,14 @@ const atributos = [
 		background: rgba(248, 241, 229, 0.9);
 		border-radius: 12px;
 		border: 1px solid rgba(90, 63, 27, 0.2);
-		font-size: 14px;
+		font-size: 13px;
 		color: #3f2f1b;
 		text-align: center;
+		line-height: 1.5;
+	}
+
+	.info p {
+		margin: 0;
 	}
 
 	.info:target {
@@ -266,16 +275,21 @@ const atributos = [
 	.info-button {
 		text-decoration: none;
 		font-size: 13px;
-		padding: 6px 14px;
+		padding: 8px 16px;
 		border-radius: 999px;
 		border: 1px solid rgba(90, 63, 27, 0.3);
 		color: #5a3f1b;
 		background: #fffaf2;
 		transition: background 0.2s ease, color 0.2s ease;
 		cursor: pointer;
+		min-height: 36px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.info-button:hover {
+	.info-button:hover,
+	.info-button:active {
 		background: #5a3f1b;
 		color: #fff5e6;
 	}
@@ -296,7 +310,7 @@ const atributos = [
 		box-shadow:
 			0 20px 40px rgba(55, 38, 18, 0.12),
 			inset 0 1px 0 rgba(255, 255, 255, 0.8);
-		padding: 24px;
+		padding: 20px;
 		gap: 16px;
 	}
 
@@ -310,43 +324,51 @@ const atributos = [
 		align-items: center;
 		justify-content: space-between;
 		gap: 16px;
+		flex-wrap: wrap;
 	}
 
 	.atributos-header h2 {
 		margin: 0;
-		font-size: 20px;
+		font-size: 18px;
 	}
 
 	.close {
 		text-decoration: none;
-		font-size: 14px;
+		font-size: 13px;
 		color: #5a3f1b;
 		border: 1px solid rgba(90, 63, 27, 0.3);
-		padding: 6px 12px;
+		padding: 8px 14px;
 		border-radius: 999px;
 		transition: background 0.2s ease, color 0.2s ease;
+		white-space: nowrap;
+		min-height: 36px;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 	}
 
-	.close:hover {
+	.close:hover,
+	.close:active {
 		background: #5a3f1b;
 		color: #fff5e6;
 	}
 
 	.atributos-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-		gap: 16px;
+		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+		gap: 12px;
 		margin-top: 8px;
 	}
 
 	.atributo {
 		display: grid;
 		place-items: center;
-		gap: 8px;
-		padding: 12px;
+		gap: 6px;
+		padding: 10px 8px;
 		background: rgba(250, 246, 238, 0.8);
 		border-radius: 14px;
 		border: 1px solid rgba(60, 46, 22, 0.12);
+		margin: 0;
 	}
 
 	.atributo-button {
@@ -355,25 +377,36 @@ const atributos = [
 		width: 100%;
 		border: none;
 		background: transparent;
-		padding: 0;
+		padding: 8px;
 		cursor: pointer;
+		transition: transform 0.2s ease;
+		border-radius: 12px;
+	}
+
+	.atributo-button:hover {
+		transform: scale(1.05);
+	}
+
+	.atributo-button:active {
+		transform: scale(0.98);
 	}
 
 	.atributo-button:focus-visible {
 		outline: 2px solid #5a3f1b;
-		outline-offset: 4px;
+		outline-offset: 2px;
 		border-radius: 12px;
 	}
 
 	.atributo img {
-		width: 72px;
-		height: 72px;
+		width: 56px;
+		height: 56px;
 		object-fit: contain;
 	}
 
 	.atributo figcaption {
-		font-size: 13px;
+		font-size: 12px;
 		color: #3f2f1b;
+		text-align: center;
 	}
 
 	@keyframes fadeIn {
@@ -388,12 +421,147 @@ const atributos = [
 	}
 
 	@media (max-width: 640px) {
+		.page {
+			padding: 16px 10px 48px;
+			gap: 20px;
+		}
+
 		.card {
-			padding: 20px;
+			padding: 16px;
+			border-radius: 16px;
+		}
+
+		.card h1 {
+			font-size: 20px;
+		}
+
+		.hint {
+			font-size: 12px;
+		}
+
+		.info {
+			padding: 10px 12px;
+			font-size: 12px;
+		}
+
+		.info-button {
+			font-size: 12px;
+			padding: 7px 14px;
+			min-height: 34px;
 		}
 
 		.atributos {
-			padding: 20px;
+			padding: 16px;
+			border-radius: 16px;
+		}
+
+		.atributos-header h2 {
+			font-size: 16px;
+		}
+
+		.close {
+			font-size: 12px;
+			padding: 7px 12px;
+			min-height: 34px;
+		}
+
+		.atributos-grid {
+			grid-template-columns: repeat(auto-fit, minmax(85px, 1fr));
+			gap: 10px;
+		}
+
+		.atributo {
+			padding: 8px 6px;
+			gap: 4px;
+		}
+
+		.atributo-button {
+			padding: 6px;
+		}
+
+		.atributo img {
+			width: 48px;
+			height: 48px;
+		}
+
+		.atributo figcaption {
+			font-size: 11px;
+		}
+	}
+
+	@media (max-width: 400px) {
+		.page {
+			padding: 12px 8px 40px;
+		}
+
+		.card {
+			padding: 14px;
+		}
+
+		.card h1 {
+			font-size: 18px;
+		}
+
+		.atributos-grid {
+			grid-template-columns: repeat(auto-fit, minmax(75px, 1fr));
+			gap: 8px;
+		}
+
+		.atributo-button {
+			padding: 4px;
+		}
+
+		.atributo img {
+			width: 40px;
+			height: 40px;
+		}
+
+		.atributo figcaption {
+			font-size: 10px;
+		}
+	}
+
+	@media (min-width: 641px) {
+		.page {
+			padding: 32px 16px 64px;
+		}
+
+		.card {
+			padding: 24px;
+		}
+
+		.card h1 {
+			font-size: 24px;
+		}
+
+		.hint {
+			font-size: 14px;
+		}
+
+		.info {
+			font-size: 14px;
+		}
+
+		.atributos {
+			padding: 24px;
+		}
+
+		.atributos-header h2 {
+			font-size: 20px;
+		}
+
+		.atributo img {
+			width: 64px;
+			height: 64px;
+		}
+
+		.atributos-grid {
+			grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+			gap: 14px;
+		}
+
+		.atributo figcaption {
+			font-size: 13px;
 		}
 	}
 </style>

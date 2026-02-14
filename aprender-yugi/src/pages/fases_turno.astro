@@ -1,69 +1,80 @@
 ---
-title: "Fases de un Turno en Yu-Gi-Oh!"
+import Layout from '../layouts/Layout.astro';
+import PrimaryNav from '../components/PrimaryNav.astro';
+
+const title = 'Fases de un Turno en Yu-Gi-Oh!';
 ---
 
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Fases de un Turno en Yu-Gi-Oh!</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #1b1b1b;
-        color: #f0f0f0;
-        padding: 2rem;
-      }
-      h1 {
-        text-align: center;
-        color: #fdd835;
-      }
-      .fase {
-        background-color: #333;
-        margin: 1rem 0;
-        padding: 1rem 1.5rem;
-        border-left: 5px solid #fdd835;
-        border-radius: 5px;
-      }
-      .fase h2 {
-        margin: 0;
-        color: #ffd54f;
-      }
-      .fase p {
-        margin: 0.5rem 0 0 0;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Fases de un Turno en Yu-Gi-Oh!</h1>
+<Layout>
+	<PrimaryNav />
+	<main class="page">
+		<h1>{title}</h1>
 
-    <div class="fase">
-      <h2>1. Draw Phase (Fase de Robo)</h2>
-      <p>Robas una carta de tu mazo al inicio de tu turno.</p>
-    </div>
+		<div class="fase">
+			<h2>1. Draw Phase (Fase de Robo)</h2>
+			<p>Robas una carta de tu mazo al inicio de tu turno.</p>
+		</div>
 
-    <div class="fase">
-      <h2>2. Standby Phase (Fase de Mantenimiento)</h2>
-      <p>Se activan efectos que ocurren al inicio del turno, como contadores o cartas específicas.</p>
-    </div>
+		<div class="fase">
+			<h2>2. Standby Phase (Fase de Mantenimiento)</h2>
+			<p>Se activan efectos que ocurren al inicio del turno, como contadores o cartas especificas.</p>
+		</div>
 
-    <div class="fase">
-      <h2>3. Main Phase 1 (Fase Principal 1)</h2>
-      <p>Puedes invocar monstruos, colocar cartas de magia/trampa y activar efectos.</p>
-    </div>
+		<div class="fase">
+			<h2>3. Main Phase 1 (Fase Principal 1)</h2>
+			<p>Puedes invocar monstruos, colocar cartas de magia/trampa y activar efectos.</p>
+		</div>
 
-    <div class="fase">
-      <h2>4. Battle Phase (Fase de Batalla)</h2>
-      <p>Puedes atacar con tus monstruos si lo deseas.</p>
-    </div>
+		<div class="fase">
+			<h2>4. Battle Phase (Fase de Batalla)</h2>
+			<p>Puedes atacar con tus monstruos si lo deseas.</p>
+		</div>
 
-    <div class="fase">
-      <h2>5. Main Phase 2 (Fase Principal 2)</h2>
-      <p>Después de la batalla, puedes invocar más monstruos o usar cartas mágicas/trampa.</p>
-    </div>
+		<div class="fase">
+			<h2>5. Main Phase 2 (Fase Principal 2)</h2>
+			<p>Despues de la batalla, puedes invocar mas monstruos o usar cartas magicas/trampa.</p>
+		</div>
 
-    <div class="fase">
-      <h2>6. End Phase (Fase Final)</h2>
-      <p>Se resuelven efectos que ocurren al final del turno y se termina tu turno.</p>
-    </div>
-  </body>
-</html>
+		<div class="fase">
+			<h2>6. End Phase (Fase Final)</h2>
+			<p>Se resuelven efectos que ocurren al final del turno y se termina tu turno.</p>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	:global(body) {
+		font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+		background: #1b1b1b;
+		color: #f0f0f0;
+	}
+
+	.page {
+		padding: 32px 20px 64px;
+		max-width: 860px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		text-align: center;
+		color: #fdd835;
+		margin-bottom: 24px;
+	}
+
+	.fase {
+		background-color: #333;
+		margin: 1rem 0;
+		padding: 1rem 1.5rem;
+		border-left: 5px solid #fdd835;
+		border-radius: 8px;
+	}
+
+	.fase h2 {
+		margin: 0;
+		color: #ffd54f;
+	}
+
+	.fase p {
+		margin: 0.5rem 0 0 0;
+	}
+</style>
