@@ -1,242 +1,531 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PrimaryNav from '../components/PrimaryNav.astro';
+import magicaNormal from '../assets/tipo_cartas/magicas/magica_normal.webp';
+import magicaContinua from '../assets/tipo_cartas/magicas/magica-continua.webp';
+import magicaEquipo from '../assets/tipo_cartas/magicas/magica_equipo.png';
+import magicaCampo from '../assets/tipo_cartas/magicas/magica-campo.webp';
+import magicaRapido from '../assets/tipo_cartas/magicas/magica-rapido.webp';
+import magicaRitual from '../assets/tipo_cartas/magicas/magica-ritual.webp';
+import trampaNormal from '../assets/tipo_cartas/trampas/trampa_normal.webp';
+import trampaContinua from '../assets/tipo_cartas/trampas/trampa_continua.webp';
+import trampaContraefecto from '../assets/tipo_cartas/trampas/trampa_contraefecto.webp';
 
 const title = 'Tipo de cartas';
 ---
 
 <Layout>
-  <PrimaryNav />
-  <main class="page">
-    <h1>{title}</h1>
-    <article>
-      <h2>Basicos</h2>
-      <h3>Monstruos Normales</h3>
-      <p>Contenido de la pagina...</p>
-      <h3>Monstruos Efecto</h3>
-      <p>Contenido de la pagina...</p>
-      <h3>Magicas</h3>
-      <p>Contenido de la pagina...</p>
-      <h3>Trampas</h3>
-      <p>Contenido de la pagina...</p>
+	<PrimaryNav />
+	<main class="page">
+		<h1>{title}</h1>
+		
+		<article>
+			<h2>Básicos</h2>
+			
+			<h3>Monstruos Normales</h3>
+			<img src="/assets/tipo_cartas/carta_normal.png" alt="Carta de Monstruo Normal" />
+			<p>
+				Los Monstruos Normales son el tipo más básico de cartas de monstruo en Yu-Gi-Oh!. 
+				Se caracterizan por tener un marco de color amarillo/dorado y no poseer ningún efecto especial. 
+				Su texto descriptivo es puramente narrativo y no tiene ninguna función en el juego.
+			</p>
+			<p>
+				Aunque pueden parecer débiles comparados con los Monstruos de Efecto, muchos arquetipos 
+				y estrategias se basan en Monstruos Normales, y existen numerosas cartas de soporte específicas 
+				para este tipo de monstruos, como "Inesperado Dai" o "Rescate de los Caídos".
+			</p>
 
-      <h2>Extra Deck</h2>
-      <h3>Monstruos Fusion</h3>
-      <p>
-        Los Monstruos de Fusion son monstruos que representan la union de dos o mas monstruos.
-        El marco de un Monstruo de Fusion es de color purpura y su Invocacion, al igual que la
-        Invocacion de Sincronia, la Invocacion de Ritual, la Invocacion Xyz y la Invocacion por
-        Pendulo, se considera una Invocacion Especial.
-      </p>
+			<h3>Monstruos Efecto</h3>
+			<img src="/assets/tipo_cartas/carta_efecto.png" alt="Carta de Monstruo Efecto" />
+			<p>
+				Los Monstruos Efecto son cartas de monstruo que poseen habilidades especiales descritas 
+				en su texto de carta. Se distinguen por tener un marco de color naranja/ámbar.
+			</p>
+			<p>
+				Los efectos pueden ser de varios tipos: efectos de Ignición (que se activan manualmente), 
+				efectos de Disparo (que se activan cuando se cumple una condición), efectos Continuos 
+				(que están activos mientras el monstruo está en el campo), y efectos Rápidos (que pueden 
+				activarse durante el turno del oponente).
+			</p>
+			<p>
+				Son el tipo de monstruo más común y versátil en el juego moderno, formando la base de 
+				la mayoría de estrategias competitivas.
+			</p>
 
-      <p>
-        Un Monstruo de Fusion por lo general es Invocado al Campo por medio de una carta que permita
-        hacer una Invocacion de Fusion, siendo "Polimerizacion" la primera y mas conocida para ello.
-        Este tipo de monstruos posee un amplio apoyo, el cual casi siempre esta enfocado en facilitar la
-        invocacion de los Monstruos de Fusion. Un ejemplo de esto es el monstruo "Rey del Pantano", que
-        sirve de reemplazo para cualquier monstruo que este especificado en un monstruo de Fusion como
-        Material de Fusion, ademas de poder ser descartado para buscar una "Polimerizacion" del Deck.
-      </p>
+			<h3>Mágicas</h3>
+			<p>
+				Las Cartas Mágicas (también conocidas como Spell Cards) tienen un marco de color verde 
+				azulado/turquesa. Pueden jugarse durante tu Main Phase y proporcionan diversos efectos 
+				que pueden alterar el curso del duelo.
+			</p>
+			<p>
+				Existen varios tipos de Cartas Mágicas:
+			</p>
+			<div class="card-types">
+				<div class="card-type">
+					<img src={magicaNormal.src} alt="Carta Mágica Normal" />
+					<strong>Mágicas Normales:</strong> Se activan, resuelven su efecto y van al Cementerio.
+				</div>
+				<div class="card-type">
+					<img src={magicaContinua.src} alt="Carta Mágica Continua" />
+					<strong>Mágicas Continuas:</strong> Permanecen en el campo y su efecto se mantiene activo.
+				</div>
+				<div class="card-type">
+					<img src={magicaEquipo.src} alt="Carta Mágica de Equipo" />
+					<strong>Mágicas de Equipo:</strong> Se equipan a un monstruo específico y le otorgan beneficios.
+				</div>
+				<div class="card-type">
+					<img src={magicaCampo.src} alt="Carta Mágica de Campo" />
+					<strong>Mágicas de Campo:</strong> Afectan a todo el campo de juego mientras estén activas.
+				</div>
+				<div class="card-type">
+					<img src={magicaRapido.src} alt="Carta Mágica de Juego Rápido" />
+					<strong>Mágicas de Juego Rápido:</strong> Pueden activarse durante el turno del oponente, similar a las Trampas.
+				</div>
+				<div class="card-type">
+					<img src={magicaRitual.src} alt="Carta Mágica de Ritual" />
+					<strong>Mágicas de Ritual:</strong> Permiten Invocar Monstruos de Ritual desde la mano.
+				</div>
+			</div>
 
-      <p>
-        Si un Monstruo de Fusion es mandado a otra zona como el Cementerio o la Zona de Destierro,
-        puede ser Invocado desde ella con las cartas apropiadas (ya sea Monstruo Renacido para el
-        Cementerio o Regreso de una Dimension Distinta para la Zona de Destierro).
-      </p>
+			<h3>Trampas</h3>
+			<p>
+				Las Cartas de Trampa (Trap Cards) tienen un marco de color rosa/magenta. A diferencia 
+				de las Mágicas, las Trampas deben Colocarse boca abajo primero y generalmente no pueden 
+				activarse el mismo turno en que fueron Colocadas (salvo excepciones como el efecto de 
+				ciertas cartas).
+			</p>
+			<p>
+				Los tipos de Cartas de Trampa son:
+			</p>
+			<div class="card-types">
+				<div class="card-type">
+					<img src={trampaNormal.src} alt="Carta Trampa Normal" />
+					<strong>Trampas Normales:</strong> Se activan una vez, resuelven su efecto y van al Cementerio.
+				</div>
+				<div class="card-type">
+					<img src={trampaContinua.src} alt="Carta Trampa Continua" />
+					<strong>Trampas Continuas:</strong> Permanecen boca arriba en el campo después de activarse.
+				</div>
+				<div class="card-type">
+					<img src={trampaContraefecto.src} alt="Carta Trampa de Contraefecto" />
+					<strong>Trampas de Contraefecto:</strong> Se activan en respuesta a la activación de otra carta o efecto, generalmente para negarlo.
+				</div>
+			</div>
+			<p>
+				Las Trampas son esenciales para la defensa y el control del campo, permitiendo interrumpir 
+				las jugadas del oponente durante su turno.
+			</p>
+		</article>
 
-      <p>
-        Sin embargo, hay Monstruos de Fusion que por su poder de ataque o su efecto especial, poseen
-        dos tipos de restricciones que hacen que la carta sea mas equilibrada:
-      </p>
+		<section>
+			<h2>Extra Deck</h2>
+			
+			<h3>Monstruos Fusión</h3>
+			<img src="/assets/tipo_cartas/heroe_elemental_cero_absoluto.png" alt="Monstruo de Fusión" />
+			<p>
+				Los Monstruos de Fusión son monstruos que representan la unión de dos o más monstruos. 
+				El marco de un Monstruo de Fusión es de color púrpura y su Invocación, al igual que 
+				la Invocación de Sincronía, la Invocación de Ritual, la Invocación Xyz y la Invocación 
+				por Péndulo, se considera una Invocación Especial.
+			</p>
+			<p>
+				Un Monstruo de Fusión por lo general es Invocado al Campo por medio de una carta que 
+				permita hacer una Invocación de Fusión, siendo "Polimerización" la primera y más conocida 
+				para ello. Este tipo de monstruos posee un amplio apoyo, el cual casi siempre está enfocado 
+				en facilitar la invocación de los Monstruos de Fusión. Un ejemplo de esto es el monstruo 
+				"Rey del Pantano", que sirve de reemplazo para cualquier monstruo que esté especificado 
+				en un monstruo de Fusión como Material de Fusión, además de poder ser descartado para 
+				buscar una "Polimerización" del Deck.
+			</p>
+			<p>
+				Si un Monstruo de Fusión es mandado a otra zona como el Cementerio o la Zona de Destierro, 
+				puede ser Invocado desde ella con las cartas apropiadas (ya sea Monstruo Renacido para 
+				el Cementerio o Regreso de una Dimensión Distinta para la Zona de Destierro).
+			</p>
+			<p>
+				Sin embargo, hay Monstruos de Fusión que por su poder de ataque o su efecto especial, 
+				poseen dos tipos de restricciones que hacen que la carta sea más equilibrada:
+			</p>
+			<ul>
+				<li>Debe ser Invocado por Fusión con los Materiales de Fusión listados arriba.</li>
+				<li>Debe ser Invocado por Fusión y no puede ser Invocado de Modo Especial de otra forma.</li>
+			</ul>
+			<p>
+				Debido a esta última restricción, algunos Monstruos de Fusión no pueden ser Invocados 
+				desde otras Zonas como el Cementerio o la Zona de Destierro.
+			</p>
+			<p>
+				Actualmente hay distintas cartas para Invocar a un Monstruo de Fusión, algunas incluso 
+				específicas para un arquetipo. Como ejemplos están los "HÉROE Malvado", los cuales no 
+				pueden Invocarse con la carta "Polimerización", sino con cartas como "Llamamiento Oscuro" 
+				o "Fusión Oscura"; otro caso son una serie de Monstruos de Fusión que requieren de un 
+				Monstruo de Sincronía como Material de Fusión. Este tipo de monstruos sí puede usar la 
+				carta "Polimerización", y además poseen una carta exclusiva llamada Fusión de Sincronía 
+				Milagrosa que puede ser usada para invocar mediante invocación de fusión este tipo de cartas.
+			</p>
+			<p>
+				Tomando en cuenta que para una Invocación de Fusión se requieren monstruos como material, 
+				tanto los Monstruos Trampa (cuando son tratados como monstruos en la Zona de Cartas de 
+				Monstruo) como las Fichas (tomando en cuenta las restricciones según la carta que las 
+				produzca, como el no poder Invocar otros monstruos en el mismo turno si son de "Scapegoat") 
+				pueden usarse como Material para la Invocación de un Monstruo de Fusión adecuado.
+			</p>
+			<p>
+				Ej. tanto "Limo Reflectametal" como una Ficha de "Diente de León" junto con un HÉROE 
+				Elemental y cartas que fusionen monstruos en el Campo, como "Polimerización" o "Super 
+				Polimerización", pueden usarse para Invocar a HÉROE Elemental Cero Absoluto o HÉROE 
+				Elemental Gran Tornado, respectivamente.
+			</p>
+		</section>
 
-      <ul>
-        <li>Debe ser Invocado por Fusion con los Materiales de Fusion listados arriba.</li>
-        <li>Debe ser Invocado por Fusion y no puede ser Invocado de Modo Especial de otra forma.</li>
-      </ul>
+		<section>
+			<h2>Un Monstruo de Fusión puede Invocarse por los siguientes métodos:</h2>
+			<ol>
+				<li>
+					<strong>Mediante una carta que permita hacer una Invocación de Fusión más los monstruos Material.</strong>
+					<p>Ejemplos: "Polimerización", "Super Polimerización".</p>
+				</li>
+				<li>
+					<strong>Mediante el uso del efecto de un monstruo que permita prescindir de una carta de Fusión.</strong>
+					<p>
+						Por lo general, esto no se cuenta como una Invocación de Fusión, por lo que si el 
+						monstruo es mandado a otra zona como el Cementerio, a pesar de que no tenga 
+						restricciones en su Invocación Especial, no podrá ser Invocado de dicha zona ya 
+						que no fue Invocado al Campo mediante una Invocación de Fusión.
+					</p>
+					<p>Ejemplos: "La Oscuridad Mágicamente Sellada Fusión", "Ciberstein".</p>
+				</li>
+				<li>
+					<strong>Mediante una carta que permita Invocar un Monstruo de Fusión del Deck Extra sin la necesidad de materiales.</strong>
+					<p>De forma similar a lo anterior, las Invocaciones con estas cartas no suelen contarse como una Invocación de Fusión.</p>
+					<p>Ejemplos: "Cambio de Máscara", "Metamorfosis".</p>
+				</li>
+				<li>
+					<strong>Mediante una Fusión de Contacto, para lo cual hay que mandar los Monstruos Material del Campo hacia donde el Monstruo de Fusión lo indique.</strong>
+					<p>No se requiere usar el efecto de otra carta.</p>
+					<p>Ejemplos: "Dragón Fortaleza Chimeratech", Monstruos de Fusión del arquetipo Bestia Gladiador.</p>
+				</li>
+			</ol>
+		</section>
 
-      <p>
-        Debido a esta ultima restriccion, algunos Monstruos de Fusion no pueden ser Invocados desde
-        otras Zonas como el Cementerio o la Zona de Destierro.
-      </p>
+		<section>
+			<h2>Monstruos Sincronía</h2>
+			<img src="/assets/tipo_cartas/carta_sincronia.png" alt="Monstruo de Sincronía" />
+			<p>
+				Los Monstruos de Sincronía son un tipo de Cartas de Monstruo que tienen el color del 
+				marco blanco plateado. Durante su Main Phase, el jugador activo puede Invocar por Sincronía 
+				un Monstruo de Sincronía en su Deck Extra mandando al Cementerio monstruos en su Campo 
+				como Materiales de Sincronía (incluyendo al menos 1 Cantante), cuyos Niveles combinados 
+				sean igual al Nivel del Monstruo de Sincronía que se pretende Invocar, ejemplo: 1 Cantante 
+				de Nivel 3 + 2 monstruos de Nivel 2 equivale a 1 Monstruo de Sincronía de Nivel 7 (como 
+				"Dragón de la Rosa Negra"). Después, el jugador Invoca al Monstruo de Sincronía en una 
+				Zona de Monstruos Principal desocupada o a una Zona de Monstruos Extra en Posición de 
+				Ataque o Defensa boca arriba.
+			</p>
+			<p>
+				Algunos Monstruos de Sincronía requieren de monstruos Cantantes específicos para ser 
+				Invocados por Sincronía (como "Sincronizador de Basura" para "Guerrero de Basura") o 
+				monstruos de un Tipo particular que son usados como Materiales de Sincronía para tal 
+				Invocación, pero muchos no lo necesitan, por lo que la mayoría de los Monstruos de 
+				Sincronía pueden añadirse al Deck Extra sin preocupaciones. Además, también existen 
+				Monstruos de Sincronía que requieren de dos Cantantes para su Invocación, como "Dragón 
+				de Nova Roja", así como Monstruos de Sincronía Cantantes, como "T.G. Maga Maravillosa".
+			</p>
+			<p>
+				Los monstruos que no tienen Niveles, como los Monstruos Xyz y los Monstruos de Enlace, 
+				no pueden ser usados como Materiales de Sincronía. Con el objeto de facilitar las 
+				Invocaciones por Sincronía, existen Cartas Mágicas y de Trampa que permiten alterar 
+				el Nivel original de uno o más monstruos que se tengan en el Campo, y monstruos cuyo 
+				efecto les permite, bajo ciertas condiciones, alterar su propio Nivel original, o el 
+				de otros monstruos que estén en el Campo.
+			</p>
+			<p>
+				Estratégicamente hablando, los Monstruos de Sincronía permiten la Invocación de cartas 
+				muy potentes con una gran rapidez y relativa facilidad, creando gran variedad de 
+				oportunidades para realizar One Turn Kill y First Turn Kill, proporcionando una muy 
+				buena ventaja contra Decks que no los usan. La mayoría de estos tienen excelentes y 
+				destructivos efectos, además de su fácil Invocación y gran ATK. Los Monstruos de 
+				Sincronía tienen mucha ventaja respecto a los Monstruos de Fusión y los Monstruos de 
+				Ritual, si contamos que los Monstruos de Sincronía no necesitan de la carta "Polimerización" 
+				(como los Monstruos de Fusión) y tampoco necesitan de una Carta Mágica específica o de 
+				contar con el Monstruo de Ritual adecuado en la respectiva mano. Los Monstruos de 
+				Sincronía permiten tener bastante flexibilidad en un Duelo, ya que no estorban en la 
+				mano del jugador y no hay límite de cuántos puedes Invocar en un turno. Por eso, un 
+				jugador con Cantantes y no Cantantes en el Campo siempre va a tener una o más opciones 
+				para Invocar, especialmente si se cuenta con efectos de cartas que permiten cambiar 
+				los Niveles de los monstruos.
+			</p>
+		</section>
 
-      <p>
-        Actualmente hay distintas cartas para Invocar a un Monstruo de Fusion, algunas incluso
-        especificas para un arquetipo. Como ejemplos estan los "HEROE Malvado", los cuales no pueden
-        Invocarse con la carta "Polimerizacion", sino con cartas como "Llamamiento Oscuro" o
-        "Fusion Oscura"; otro caso son una serie de Monstruos de Fusion que requieren de un Monstruo de
-        Sincronia como Material de Fusion. Este tipo de monstruos si puede usar la carta
-        "Polimerizacion", y ademas poseen una carta exclusiva llamada Fusion de Sincronia Milagrosa que
-        puede ser usada para invocar mediante invocacion de fusion este tipo de cartas.
-      </p>
+		<section>
+			<h2>Monstruos Xyz</h2>
+			<img src="/assets/tipo_cartas/carta_xyz.png" alt="Monstruo Xyz" />
+			<p>
+				Los Monstruos Xyz son una clase de Carta de Monstruo con marcos de color negro. 
+				Se almacenan en el Deck Extra.
+			</p>
+			<p>
+				Los Monstruos Xyz no tienen Nivel, sino Rango, el cual determina los Niveles requeridos 
+				de los monstruos Material Xyz necesarios para realizar una Invocación Xyz, los cuales 
+				se apilan debajo del Monstruo Xyz.
+			</p>
+			<p>
+				Puede ser puesto en una Zona de Monstruos Principal o en la zona que apunte un Monstruo 
+				de Enlace. El Rango está representado por una fila de estrellas amarillas dentro de 
+				esferas negras, en el lado izquierdo superior de la Carta de Monstruo. A diferencia de 
+				los Monstruos de Sincronía, el Rango no se determina por el total de los Niveles de los 
+				monstruos usados para su Invocación; si un Monstruo Xyz tiene Rango 3, requerirá de 2 
+				o tal vez más monstruos de Nivel 3 para ser Invocado. Por lo tanto, esta clase de 
+				monstruos no tiene Nivel y no podrán ser usados para una Invocación por Sincronía, por 
+				Ritual o Xyz (existen algunas pocas excepciones especiales respecto a esta última, pero 
+				normalmente siguen esta norma). Tampoco son afectados por aquellos efectos que involucren 
+				Niveles, como los de las cartas "Atar a la Gravedad", "Límite de Nivel - Área B", 
+				"Ruleta Rusa" o "Carga del Poderoso" que no pueden aplicar sus efectos sobre los 
+				Monstruos Xyz bajo ninguna circunstancia.
+			</p>
+			<p>
+				Mientras están acoplados a un Monstruo Xyz, los Materiales Xyz no son tratados como si 
+				estuvieran en el Campo. La mayoría de los Monstruos Xyz requieren que el jugador 
+				"desacople" (situar en el Cementerio) sus monstruos Material Xyz para activar sus efectos. 
+				Cuando el Monstruo Xyz deja el Campo, sus Materiales Xyz son también mandados al Cementerio. 
+				Algunos incluso poseen efectos negativos cuando ya no disponen de Materiales Xyz acoplados 
+				(ej: "Número 39: Utopía", "Número 30: Gólem de Ácido de la Destrucción"), por lo que 
+				sería mejor usar sus efectos de manera moderada. Los Materiales Xyz permanecen acoplados 
+				al Monstruo Xyz si este es volteado boca abajo.
+			</p>
+			<p>
+				Su Invocación es un poco más sencilla, ya que no requieren de una clase específica de 
+				monstruo (Cantante) o de una Carta Mágica específica (como alguna Carta Mágica de Ritual, 
+				"Polimerización" o "Fusión Futura") y por esta razón poseen menos restricciones en cuanto 
+				a los monstruos que se pueden usar como Material Xyz, haciendo mucho más fácil el añadirlos 
+				en casi cualquier Deck. Sin embargo, no son tan fuertes como los Monstruos de Ritual, de 
+				Monstruos de Fusión o Monstruos de Sincronía ya que pocos tienen más de 2400 ATK y 
+				normalmente aquellos que superan o igualan los 3000 ATK poseen efectos negativos o bien 
+				tienen requerimientos de Invocación difíciles de cumplimentar (materiales "específicos" 
+				o de Niveles bastante elevados).
+			</p>
+		</section>
 
-      <p>
-        Tomando en cuenta que para una Invocacion de Fusion se requieren monstruos como material, tanto
-        los Monstruos Trampa (cuando son tratados como monstruos en la Zona de Cartas de Monstruo) como
-        las Fichas (tomando en cuenta las restricciones segun la carta que las produzca, como el no poder
-        Invocar otros monstruos en el mismo turno si son de "Scapegoat") pueden usarse como Material para
-        la Invocacion de un Monstruo de Fusion adecuado.
-      </p>
+		<section>
+			<h2>Monstruos Péndulo</h2>
+			<img src="/assets/tipo_cartas/carta_pendulo.png" alt="Monstruo Péndulo" />
+			<p>
+				Los Monstruos Péndulo son un tipo híbrido de carta introducido en 2014. Se caracterizan 
+				por tener marcos divididos en dos mitades (la mitad superior del color del tipo de 
+				monstruo correspondiente, y la mitad inferior de color verde como las Cartas Mágicas), 
+				y poseen tanto un efecto de monstruo como un efecto de Péndulo.
+			</p>
+			<p>
+				Las Cartas Péndulo pueden ser jugadas en las Zonas de Péndulo (ubicadas en los extremos 
+				izquierdo y derecho del campo), donde funcionan como Cartas Mágicas Continuas y activan 
+				su efecto de Péndulo. Cada Carta Péndulo tiene una Escala de Péndulo, representada por 
+				números en las esquinas inferiores de la carta (generalmente entre 0 y 13).
+			</p>
+			<p>
+				Cuando hay dos Cartas Péndulo en ambas Zonas de Péndulo con diferentes Escalas, puedes 
+				realizar una Invocación Péndulo. Esto te permite Invocar Especialmente cualquier cantidad 
+				de monstruos desde tu mano y/o boca arriba en tu Deck Extra, cuyos Niveles estén entre 
+				las dos Escalas de Péndulo (sin incluir los valores de las Escalas mismas). Por ejemplo, 
+				con Escalas de 1 y 8, puedes Invocar monstruos de Nivel 2 a 7.
+			</p>
+			<p>
+				<strong>Características especiales:</strong>
+			</p>
+			<ul>
+				<li>Cuando un Monstruo Péndulo en el campo sería mandado al Cementerio, es colocado boca arriba en el Deck Extra en su lugar.</li>
+				<li>Pueden ser Invocados Péndulo desde el Deck Extra boca arriba, permitiendo reutilizarlos múltiples veces.</li>
+				<li>Los Monstruos Péndulo del Deck Extra solo pueden ser Invocados Especialmente a Zonas de Monstruos Extra.</li>
+				<li>Existen Monstruos Péndulo que también son Monstruos de Fusión, Sincronía, Xyz o Enlace, combinando sus mecánicas.</li>
+			</ul>
+			<p>
+				Esta mecánica revolucionó el juego al permitir Invocaciones masivas de monstruos en un 
+				solo turno, creando estrategias muy agresivas y dinámicas. Sin embargo, las reglas 
+				posteriores (especialmente la introducción de los Monstruos de Enlace) limitaron su 
+				poder original.
+			</p>
+		</section>
 
-      <p>
-        Ej. tanto "Limo Reflectametal" como una Ficha de "Diente de Leon" junto con un HEROE Elemental y
-        cartas que fusionen monstruos en el Campo, como "Polimerizacion" o "Super Polimerizacion", pueden
-        usarse para Invocar a HEROE Elemental Cero Absoluto o HEROE Elemental Gran Tornado,
-        respectivamente.
-      </p>
-    </article>
-
-    <section>
-      <h2>Un Monstruo de Fusion puede Invocarse por los siguientes metodos:</h2>
-
-      <ol>
-        <li>
-          <strong>Mediante una carta que permita hacer una Invocacion de Fusion mas los monstruos Material.</strong>
-          <p>Ejemplos: "Polimerizacion", "Super Polimerizacion".</p>
-        </li>
-        <li>
-          <strong>Mediante el uso del efecto de un monstruo que permita prescindir de una carta de Fusion.</strong>
-          <p>
-            Por lo general, esto no se cuenta como una Invocacion de Fusion, por lo que si el monstruo es
-            mandado a otra zona como el Cementerio, a pesar de que no tenga restricciones en su Invocacion
-            Especial, no podra ser Invocado de dicha zona ya que no fue Invocado al Campo mediante una
-            Invocacion de Fusion.
-          </p>
-          <p>Ejemplos: "La Oscuridad Magicamente Sellada Fusion", "Ciberstein".</p>
-        </li>
-        <li>
-          <strong>Mediante una carta que permita Invocar un Monstruo de Fusion del Deck Extra sin la necesidad de materiales.</strong>
-          <p>De forma similar a lo anterior, las Invocaciones con estas cartas no suelen contarse como una Invocacion de Fusion.</p>
-          <p>Ejemplos: "Cambio de Mascara", "Metamorfosis".</p>
-        </li>
-        <li>
-          <strong>Mediante una Fusion de Contacto, para lo cual hay que mandar los Monstruos Material del Campo hacia donde el Monstruo de Fusion lo indique.</strong>
-          <p>No se requiere usar el efecto de otra carta.</p>
-          <p>Ejemplos: "Dragon Fortaleza Chimeratech", Monstruos de Fusion del arquetipo Bestia Gladiador.</p>
-        </li>
-      </ol>
-    </section>
-
-    <section>
-      <h2>Monstruos Sincronia</h2>
-      <p>
-        Los Monstruos de Sincronia son un tipo de Cartas de Monstruo que tienen el color del marco blanco
-        plateado. Durante su Main Phase, el jugador activo puede Invocar por Sincronia un Monstruo de
-        Sincronia en su Deck Extra mandando al Cementerio monstruos en su Campo como Materiales de
-        Sincronia (incluyendo al menos 1 Cantante), cuyos Niveles combinados sean igual al Nivel del
-        Monstruo de Sincronia que se pretende Invocar, ejemplo: 1 Cantante de Nivel 3 + 2 monstruos de
-        Nivel 2 equivale a 1 Monstruo de Sincronia de Nivel 7 (como "Dragon de la Rosa Negra"). Despues,
-        el jugador Invoca al Monstruo de Sincronia en una Zona de Monstruos Principal desocupada o a una
-        Zona de Monstruos Extra en Posicion de Ataque o Defensa boca arriba.
-      </p>
-
-      <p>
-        Algunos Monstruos de Sincronia requieren de monstruos Cantantes especificos para ser Invocados por
-        Sincronia (como "Sincronizador de Basura" para "Guerrero de Basura") o monstruos de un Tipo
-        particular que son usados como Materiales de Sincronia para tal Invocacion, pero muchos no lo
-        necesitan, por lo que la mayoria de los Monstruos de Sincronia pueden anadirse al Deck Extra sin
-        preocupaciones. Ademas, tambien existen Monstruos de Sincronia que requieren de dos Cantantes para
-        su Invocacion, como "Dragon de Nova Roja", asi como Monstruos de Sincronia Cantantes, como
-        "T.G. Maga Maravillosa".
-      </p>
-
-      <p>
-        Los monstruos que no tienen Niveles, como los Monstruos Xyz y los Monstruos de Enlace, no pueden
-        ser usados como Materiales de Sincronia. Con el objeto de facilitar las Invocaciones por Sincronia,
-        existen Cartas Magicas y de Trampa que permiten alterar el Nivel original de uno o mas monstruos
-        que se tengan en el Campo, y monstruos cuyo efecto les permite, bajo ciertas condiciones, alterar
-        su propio Nivel original, o el de otros monstruos que esten en el Campo.
-      </p>
-
-      <p>
-        Estrategicamente hablando, los Monstruos de Sincronia permiten la Invocacion de cartas muy
-        potentes con una gran rapidez y relativa facilidad, creando gran variedad de oportunidades para
-        realizar One Turn Kill y First Turn Kill, proporcionando una muy buena ventaja contra Decks que
-        no los usan. La mayoria de estos tienen excelentes y destructivos efectos, ademas de su facil
-        Invocacion y gran ATK. Los Monstruos de Sincronia tienen mucha ventaja respecto a los Monstruos de
-        Fusion y los Monstruos de Ritual, si contamos que los Monstruos de Sincronia no necesitan de la
-        carta "Polimerizacion" (como los Monstruos de Fusion) y tampoco necesitan de una Carta Magica
-        especifica o de contar con el Monstruo de Ritual adecuado en la respectiva mano. Los Monstruos de
-        Sincronia permiten tener bastante flexibilidad en un Duelo, ya que no estorban en la mano del
-        jugador y no hay limite de cuantos puedes Invocar en un turno. Por eso, un jugador con Cantantes y
-        no Cantantes en el Campo siempre va a tener una o mas opciones para Invocar, especialmente si se
-        cuenta con efectos de cartas que permiten cambiar los Niveles de los monstruos.
-      </p>
-    </section>
-
-    <section>
-      <h2>Monstruos Xyz</h2>
-      <p>
-        Los Monstruos Xyz son una clase de Carta de Monstruo con marcos de color negro. Se almacenan en el
-        Deck Extra.
-      </p>
-      <p>
-        Los Monstruos Xyz no tienen Nivel, sino Rango, el cual determina los Niveles requeridos de los
-        monstruos Material Xyz necesarios para realizar una Invocacion Xyz, los cuales se apilan debajo del
-        Monstruo Xyz.
-      </p>
-      <p>
-        Puede ser puesto en una Zona de Monstruos Principal o en la zona que apunte un Monstruo de Enlace.
-        El Rango esta representado por una fila de estrellas amarillas dentro de esferas negras, en el lado
-        izquierdo superior de la Carta de Monstruo. A diferencia de los Monstruos de Sincronia, el Rango no
-        se determina por el total de los Niveles de los monstruos usados para su Invocacion; si un Monstruo
-        Xyz tiene Rango 3, requerira de 2 o tal vez mas monstruos de Nivel 3 para ser Invocado. Por lo tanto,
-        esta clase de monstruos no tiene Nivel y no podran ser usados para una Invocacion por Sincronia,
-        por Ritual o Xyz (existen algunas pocas excepciones especiales respecto a esta ultima, pero
-        normalmente siguen esta norma). Tampoco son afectados por aquellos efectos que involucren Niveles,
-        como los de las cartas "Atar a la Gravedad", "Limite de Nivel - Area B", "Ruleta Rusa" o
-        "Carga del Poderoso" que no pueden aplicar sus efectos sobre los Monstruos Xyz bajo ninguna
-        circunstancia.
-      </p>
-      <p>
-        Mientras estan acoplados a un Monstruo Xyz, los Materiales Xyz no son tratados como si estuvieran en
-        el Campo. La mayoria de los Monstruos Xyz requieren que el jugador "desacople" (situar en el
-        Cementerio) sus monstruos Material Xyz para activar sus efectos. Cuando el Monstruo Xyz deja el
-        Campo, sus Materiales Xyz son tambien mandados al Cementerio. Algunos incluso poseen efectos
-        negativos cuando ya no disponen de Materiales Xyz acoplados (ej: "Numero 39: Utopia", "Numero 30:
-        Golem de Acido de la Destruccion"), por lo que seria mejor usar sus efectos de manera moderada. Los
-        Materiales Xyz permanecen acoplados al Monstruo Xyz si este es volteado boca abajo.
-      </p>
-      <p>
-        Su Invocacion es un poco mas sencilla, ya que no requieren de una clase especifica de monstruo
-        (Cantante) o de una Carta Magica especifica (como alguna Carta Magica de Ritual, "Polimerizacion" o
-        "Fusion Futura") y por esta razon poseen menos restricciones en cuanto a los monstruos que se
-        pueden usar como Material Xyz, haciendo mucho mas facil el anadirlos en casi cualquier Deck.
-        Sin embargo, no son tan fuertes como los Monstruos de Ritual, de Monstruos de Fusion o Monstruos de
-        Sincronia ya que pocos tienen mas de 2400 ATK y normalmente aquellos que superan o igualan los 3000
-        ATK poseen efectos negativos o bien tienen requerimientos de Invocacion dificiles de cumplimentar
-        (materiales "especificos" o de Niveles bastante elevados).
-      </p>
-    </section>
-
-    <section>
-      <h2>Pendulos</h2>
-    </section>
-  </main>
+		<section>
+			<h2>Monstruos de Enlace</h2>
+			<img src="/assets/tipo_cartas/carta_enlace.png" alt="Monstruo de Enlace" />
+			<p>
+				Los Monstruos de Enlace (Link Monsters) son el tipo más reciente de monstruos del Deck 
+				Extra, introducidos en 2017. Tienen un marco de color azul oscuro con un patrón de 
+				circuitos hexagonales.
+			</p>
+			<p>
+				A diferencia de otros monstruos del Deck Extra, los Monstruos de Enlace no tienen Nivel 
+				ni Rango, sino un valor de LINK (representado por números en la esquina inferior derecha). 
+				Tampoco tienen DEF y solo pueden ser Invocados en Posición de Ataque.
+			</p>
+			<p>
+				<strong>Mecánica de Invocación:</strong>
+			</p>
+			<ul>
+				<li>Se Invocan mandando al Cementerio un número de monstruos igual o mayor a su valor de LINK.</li>
+				<li>Los Materiales de Enlace deben estar en tu campo (no pueden usarse desde la mano o Deck).</li>
+				<li>Cada monstruo usado como Material cuenta como 1, excepto los Monstruos de Enlace que cuentan como su valor de LINK.</li>
+				<li>Algunos requieren tipos específicos de monstruos como Materiales de Enlace.</li>
+			</ul>
+			<p>
+				<strong>Flechas de Enlace:</strong> Los Monstruos de Enlace tienen flechas rojas alrededor 
+				de su ilustración que indican direcciones (arriba, abajo, izquierda, derecha y diagonales). 
+				Estas flechas apuntan a "Zonas de Enlace" donde puedes Invocar otros monstruos del Deck 
+				Extra. El número de flechas corresponde al valor de LINK del monstruo.
+			</p>
+			<p>
+				Los Monstruos de Enlace fueron diseñados para balancear el juego después de la era de 
+				las Invocaciones Péndulo masivas, requiriendo que los jugadores usen estratégicamente 
+				las Zonas de Monstruos Extra (las zonas especiales donde se Invocan inicialmente los 
+				monstruos del Deck Extra).
+			</p>
+		</section>
+	</main>
 </Layout>
 
 <style>
-  :global(body) {
-    font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
-    background: #f7f2e8;
-    color: #1d1a14;
-  }
+	:global(body) {
+		font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+		background: #f7f2e8;
+		color: #1d1a14;
+		line-height: 1.6;
+	}
 
-  .page {
-    padding: 32px 20px 64px;
-    max-width: 960px;
-    margin: 0 auto;
-  }
+	.page {
+		padding: 32px 20px 64px;
+		max-width: 960px;
+		margin: 0 auto;
+	}
 
-  h1 {
-    margin-bottom: 24px;
-  }
+	h1 {
+		margin-bottom: 24px;
+		font-size: 2.5rem;
+		color: #2c2416;
+	}
 
-  section + section {
-    margin-top: 28px;
-  }
+	h2 {
+		margin-top: 32px;
+		margin-bottom: 16px;
+		font-size: 1.8rem;
+		color: #3d3426;
+		border-bottom: 2px solid #d4c5a9;
+		padding-bottom: 8px;
+	}
 
-  article h2,
-  section h2 {
-    margin-top: 24px;
-  }
+	h3 {
+		margin-top: 24px;
+		margin-bottom: 12px;
+		font-size: 1.4rem;
+		color: #4a4030;
+	}
+
+	article h2,
+	section h2 {
+		margin-top: 24px;
+	}
+
+	section + section {
+		margin-top: 40px;
+	}
+
+	p {
+		margin-bottom: 16px;
+		text-align: justify;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+		margin: 20px auto;
+		border-radius: 8px;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	}
+
+	ul,
+	ol {
+		margin: 16px 0;
+		padding-left: 32px;
+	}
+
+	li {
+		margin-bottom: 12px;
+	}
+
+	strong {
+		color: #2c2416;
+		font-weight: 600;
+	}
+
+	ol > li > p {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+
+	.card-types {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 20px;
+		margin: 24px 0;
+	}
+
+	.card-type {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 16px;
+		background: rgba(255, 255, 255, 0.5);
+		border-radius: 12px;
+		border: 1px solid rgba(60, 46, 22, 0.15);
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+		transition: transform 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.card-type:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+	}
+
+	.card-type img {
+		width: 100%;
+		max-width: 200px;
+		height: auto;
+		margin: 0 0 12px 0;
+		border-radius: 8px;
+	}
+
+	.card-type strong {
+		display: block;
+		margin-bottom: 6px;
+		font-size: 1.1rem;
+	}
+
+	@media (max-width: 768px) {
+		.page {
+			padding: 24px 16px 48px;
+		}
+
+		h1 {
+			font-size: 2rem;
+		}
+
+		h2 {
+			font-size: 1.5rem;
+		}
+
+		h3 {
+			font-size: 1.2rem;
+		}
+
+		.card-types {
+			grid-template-columns: 1fr;
+			gap: 16px;
+		}
+
+		.card-type img {
+			max-width: 180px;
+		}
+	}
 </style>
