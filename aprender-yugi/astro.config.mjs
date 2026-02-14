@@ -4,6 +4,6 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://Alohbasto.github.io', 
+	site: 'https://alohbasto.github.io', 
   base: '/aprender-yugi'
 });
