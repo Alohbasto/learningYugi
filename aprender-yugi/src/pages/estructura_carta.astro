@@ -1,0 +1,399 @@
+---
+import Layout from '../layouts/Layout.astro';
+import cartaAgua from '../assets/cartas_estructura/carta_agua.png';
+import cartaDivino from '../assets/cartas_estructura/carta_divino.png';
+import cartaFuego from '../assets/cartas_estructura/carta_fuego.png';
+import cartaLuz from '../assets/cartas_estructura/carta_luz.png';
+import cartaOscuridad from '../assets/cartas_estructura/carta_oscuridad.png';
+import cartaTierra from '../assets/cartas_estructura/carta_tierra.png';
+import cartaViento from '../assets/cartas_estructura/carta_viento.png';
+import cartaOverframe from '../assets/cartas_estructura/overframe.png';
+import iconAgua from '../assets/icono_atributo/Agua.webp';
+import iconDivinidad from '../assets/icono_atributo/Divinidad.webp';
+import iconFuego from '../assets/icono_atributo/Fuego.webp';
+import iconLuz from '../assets/icono_atributo/Luz.webp';
+import iconOscuridad from '../assets/icono_atributo/Oscuridad.webp';
+import iconTierra from '../assets/icono_atributo/Tierra.webp';
+import iconViento from '../assets/icono_atributo/Viento.webp';
+
+const atributos = [
+	{ nombre: 'Agua', icono: iconAgua.src, carta: cartaAgua.src },
+	{ nombre: 'Divinidad', icono: iconDivinidad.src, carta: cartaDivino.src },
+	{ nombre: 'Fuego', icono: iconFuego.src, carta: cartaFuego.src },
+	{ nombre: 'Luz', icono: iconLuz.src, carta: cartaLuz.src },
+	{ nombre: 'Oscuridad', icono: iconOscuridad.src, carta: cartaOscuridad.src },
+	{ nombre: 'Tierra', icono: iconTierra.src, carta: cartaTierra.src },
+	{ nombre: 'Viento', icono: iconViento.src, carta: cartaViento.src },
+];
+---
+
+<Layout>
+	<main class="page">
+		<section class="card" id="carta">
+			<h1>Estructura de carta</h1>
+			<p class="hint">Pulsa el area del atributo para ver los iconos.</p>
+			<div class="card-image">
+				<img
+					id="carta-principal"
+					src={cartaAgua.src}
+					alt="Carta de ejemplo"
+					usemap="#image-map"
+					loading="eager"
+					fetchpriority="high"
+				/>
+				<map name="image-map">
+					<area
+						target=""
+						alt="nombre_carta"
+						title="nombre_carta"
+						href="#nombre"
+						coords="250,49,2,0"
+						shape="rect"
+					/>
+					<area
+						target=""
+						alt="atributo_carta"
+						title="atributo_carta"
+						href="#atributos"
+						coords="249,6,290,51"
+						shape="rect"
+					/>
+					<area
+						target=""
+						alt="nivel_carta"
+						title="nivel_carta"
+						href="#nivel"
+						coords="188,51,291,80"
+						shape="rect"
+					/>
+					<area
+						target=""
+						alt="imagen_carta"
+						title="imagen_carta"
+						href="#imagen"
+						coords="27,73,275,312"
+						shape="rect"
+					/>
+					<area
+						target=""
+						alt="efecto_carta"
+						title="efecto_carta"
+						href="#efecto"
+						coords="284,383,15,322"
+						shape="rect"
+					/>
+					<area
+						target=""
+						alt="atk_def_carta"
+						title="atk_def_carta"
+						href="#atkdef"
+						coords="19,386,288,426"
+						shape="rect"
+					/>
+				</map>
+			</div>
+			<div class="info" id="imagen" aria-live="polite">
+				<p>Elige como ver la carta:</p>
+				<div class="info-actions">
+					<button
+						type="button"
+						class="info-button info-swap"
+						data-carta={cartaAgua.src}
+						data-nombre="Normal"
+					>
+						Normal
+					</button>
+					<button
+						type="button"
+						class="info-button info-swap"
+						data-carta={cartaOverframe.src}
+						data-nombre="Overframe"
+					>
+						Overframe
+					</button>
+				</div>
+			</div>
+			<div class="info" id="nombre" aria-live="polite">
+				<p>
+					Aqui se muestra el nombre de la carta. Es muy importante ya que hay cartas que
+					dependen del nombre de la misma.
+				</p>
+			</div>
+			<div class="info" id="nivel" aria-live="polite">
+				<p>Este es el nivel de la carta va desde el 1 al 12.</p>
+			</div>
+			<div class="info" id="efecto" aria-live="polite">
+				<p>
+					Aqui aparece el texto de efecto que explica que hace la carta en el juego,
+					incluyendo condiciones, costos y como interactua con las reglas cuando se activa
+					o aplica su efecto.
+				</p>
+			</div>
+			<div class="info" id="atkdef" aria-live="polite">
+				<p>Es el ataque y defensa de la carta.</p>
+			</div>
+		</section>
+
+		<section id="atributos" class="atributos" aria-live="polite">
+			<div class="atributos-header">
+				<h2>Iconos de atributo</h2>
+				<a href="#carta" class="close">Cerrar</a>
+			</div>
+			<div class="atributos-grid">
+				{atributos.map((atributo) => (
+					<figure class="atributo" aria-label={atributo.nombre}>
+						<button
+							type="button"
+							class="atributo-button"
+							data-carta={atributo.carta}
+							data-nombre={atributo.nombre}
+						>
+							<img src={atributo.icono} alt={atributo.nombre} loading="lazy" />
+						</button>
+						<figcaption>{atributo.nombre}</figcaption>
+					</figure>
+				))}
+			</div>
+		</section>
+	</main>
+</Layout>
+
+<script>
+	const cartaPrincipal = document.querySelector('#carta-principal');
+	const botones = document.querySelectorAll('.atributo-button');
+	const botonesInfo = document.querySelectorAll('.info-swap');
+
+	if (cartaPrincipal instanceof HTMLImageElement) {
+		botones.forEach((boton) => {
+			boton.addEventListener('click', () => {
+				const nuevaCarta = boton.getAttribute('data-carta');
+				const nombre = boton.getAttribute('data-nombre');
+
+				if (nuevaCarta) {
+					cartaPrincipal.src = nuevaCarta;
+					if (nombre) {
+						cartaPrincipal.alt = `Carta atributo ${nombre}`;
+					}
+				}
+			});
+		});
+
+		botonesInfo.forEach((boton) => {
+			boton.addEventListener('click', () => {
+				const nuevaCarta = boton.getAttribute('data-carta');
+				const nombre = boton.getAttribute('data-nombre');
+
+				if (nuevaCarta) {
+					cartaPrincipal.src = nuevaCarta;
+					if (nombre) {
+						cartaPrincipal.alt = `Carta atributo ${nombre}`;
+					}
+				}
+			});
+		});
+	}
+</script>
+
+<style>
+	:global(body) {
+		font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+		background: radial-gradient(circle at top, #f7f2e8, #e6dccb 70%);
+		color: #1d1a14;
+	}
+
+	.page {
+		min-height: 100vh;
+		display: grid;
+		place-items: center;
+		padding: 32px 16px 64px;
+		gap: 28px;
+	}
+
+	.card {
+		background: rgba(255, 255, 255, 0.9);
+		border: 1px solid rgba(60, 46, 22, 0.15);
+		border-radius: 20px;
+		box-shadow:
+			0 20px 40px rgba(55, 38, 18, 0.15),
+			inset 0 1px 0 rgba(255, 255, 255, 0.8);
+		padding: 24px;
+		max-width: 380px;
+		text-align: center;
+	}
+
+	.card h1 {
+		margin: 0 0 8px;
+		font-size: 24px;
+		letter-spacing: 0.5px;
+	}
+
+	.hint {
+		margin: 0 0 16px;
+		font-size: 14px;
+		color: #51452e;
+	}
+
+	.card-image {
+		display: grid;
+		place-items: center;
+	}
+
+	.info {
+		display: none;
+		margin-top: 16px;
+		padding: 12px 16px;
+		background: rgba(248, 241, 229, 0.9);
+		border-radius: 12px;
+		border: 1px solid rgba(90, 63, 27, 0.2);
+		font-size: 14px;
+		color: #3f2f1b;
+		text-align: center;
+	}
+
+	.info:target {
+		display: grid;
+		gap: 10px;
+		animation: fadeIn 200ms ease-out;
+	}
+
+	.info-actions {
+		display: flex;
+		justify-content: center;
+		gap: 12px;
+		flex-wrap: wrap;
+	}
+
+	.info-button {
+		text-decoration: none;
+		font-size: 13px;
+		padding: 6px 14px;
+		border-radius: 999px;
+		border: 1px solid rgba(90, 63, 27, 0.3);
+		color: #5a3f1b;
+		background: #fffaf2;
+		transition: background 0.2s ease, color 0.2s ease;
+		cursor: pointer;
+	}
+
+	.info-button:hover {
+		background: #5a3f1b;
+		color: #fff5e6;
+	}
+
+	.card-image img {
+		max-width: 100%;
+		height: auto;
+		border-radius: 10px;
+		box-shadow: 0 10px 24px rgba(29, 26, 20, 0.25);
+	}
+
+	.atributos {
+		display: none;
+		width: min(900px, 100%);
+		background: rgba(255, 255, 255, 0.9);
+		border: 1px solid rgba(60, 46, 22, 0.15);
+		border-radius: 20px;
+		box-shadow:
+			0 20px 40px rgba(55, 38, 18, 0.12),
+			inset 0 1px 0 rgba(255, 255, 255, 0.8);
+		padding: 24px;
+		gap: 16px;
+	}
+
+	.atributos:target {
+		display: grid;
+		animation: fadeIn 240ms ease-out;
+	}
+
+	.atributos-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.atributos-header h2 {
+		margin: 0;
+		font-size: 20px;
+	}
+
+	.close {
+		text-decoration: none;
+		font-size: 14px;
+		color: #5a3f1b;
+		border: 1px solid rgba(90, 63, 27, 0.3);
+		padding: 6px 12px;
+		border-radius: 999px;
+		transition: background 0.2s ease, color 0.2s ease;
+	}
+
+	.close:hover {
+		background: #5a3f1b;
+		color: #fff5e6;
+	}
+
+	.atributos-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+		gap: 16px;
+		margin-top: 8px;
+	}
+
+	.atributo {
+		display: grid;
+		place-items: center;
+		gap: 8px;
+		padding: 12px;
+		background: rgba(250, 246, 238, 0.8);
+		border-radius: 14px;
+		border: 1px solid rgba(60, 46, 22, 0.12);
+	}
+
+	.atributo-button {
+		display: grid;
+		place-items: center;
+		width: 100%;
+		border: none;
+		background: transparent;
+		padding: 0;
+		cursor: pointer;
+	}
+
+	.atributo-button:focus-visible {
+		outline: 2px solid #5a3f1b;
+		outline-offset: 4px;
+		border-radius: 12px;
+	}
+
+	.atributo img {
+		width: 72px;
+		height: 72px;
+		object-fit: contain;
+	}
+
+	.atributo figcaption {
+		font-size: 13px;
+		color: #3f2f1b;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.card {
+			padding: 20px;
+		}
+
+		.atributos {
+			padding: 20px;
+		}
+	}
+</style>
