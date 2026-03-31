@@ -1,0 +1,385 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PrimaryNav from '../components/PrimaryNav.astro';
+import campo from '../assets/campo.webp';
+
+// Zonas definidas como porcentajes (x, y, w, h) de la imagen 763x441
+// Medidas ajustadas visualmente a la imagen real
+const zonas = [
+  // Zona Extra Link izquierda (círculo 7 izquierdo)
+  { id: 'zona_link1', x: 30.1, y: 20.6, w: 10.6, h: 24.7 },
+  // Zona Extra Link derecha (círculo 7 derecho)
+  { id: 'zona_link2', x: 58.8, y: 20.6, w: 10.6, h: 24.7 },
+  // Zona de Campo (3)
+  { id: 'zona_campo', x: 1.7,  y: 46.3, w: 11.4, h: 26.8 },
+  // Zona de Monstruos (1) — 5 slots centro
+  { id: 'zona_monstruos', x: 15.1, y: 46.3, w: 69.3, h: 26.5 },
+  // Cementerio (4)
+  { id: 'gy', x: 86.9, y: 46.3, w: 11.8, h: 26.5 },
+  // Extra Deck (5)
+  { id: 'extra_deck', x: 1.3,  y: 73.1, w: 11.9, h: 26.1 },
+  // Zona de Magia y Trampas (2) — slots centro
+  { id: 'zona_magia', x: 15.1, y: 73.1, w: 69.3, h: 26.1 },
+  // Zona Péndulo izquierda (parte de M&T izquierda)
+  { id: 'pendulo_izq', x: 15.7, y: 73.5, w: 10.7, h: 25.2 },
+  // Zona Péndulo derecha (parte de M&T derecha)
+  { id: 'pendulo_der', x: 72.7, y: 73.5, w: 10.4, h: 24.0 },
+  // Deck (6)
+  { id: 'deck', x: 87.2, y: 73.1, w: 11.1, h: 26.5 },
+  // Destierro zona superior izquierda
+  { id: 'destierro_1', x: 0.0,  y: 0.0,  w: 27.8, h: 20.4 },
+  // Destierro zona superior derecha
+  { id: 'destierro_2', x: 71.4, y: 0.0,  w: 28.6, h: 20.4 },
+];
+
+const reglasPorZona: Record<string, { titulo: string; texto: string }> = {
+  zona_link1: {
+    titulo: 'Zona de Monstruos Extra (izquierda)',
+    texto:
+      'Los monstruos Invocados desde el Deck Extra solo pueden ser Invocados en una Zona de Monstruos Extra o en una Zona de Monstruos Principal a la que apunte un Monstruo de Enlace.\n\nSi no existe una zona apropiada, la Invocación no puede realizarse, salvo casos donde la propia Invocación libere una zona válida.',
+  },
+  zona_link2: {
+    titulo: 'Zona de Monstruos Extra (derecha)',
+    texto:
+      'Funciona con las mismas reglas que la Zona de Monstruos Extra izquierda: los monstruos del Deck Extra entran aquí o en una Zona de Monstruos Principal apuntada por un Monstruo de Enlace.\n\nSi ambas Zonas de Monstruos Extra están ocupadas, aún puedes Invocar desde el Extra si la propia acción de Invocación deja libre una zona apropiada.',
+  },
+  zona_monstruos: {
+    titulo: 'Zona de Monstruos',
+    texto:
+      'Un monstruo Invocado o Colocado desde cualquier lugar que no sea el Deck Extra puede ir a una Zona de Monstruos Principal desocupada.\n\nLos monstruos no pueden moverse libremente entre zonas, salvo por efectos de carta específicos. Un monstruo no puede ser Invocado si no hay una zona apropiada disponible.',
+  },
+  zona_magia: {
+    titulo: 'Zona de Magia y Trampas',
+    texto:
+      'Aquí colocas Cartas Mágicas y de Trampa (excepto las Mágicas de Campo). Puedes tener hasta 5 cartas en esta zona.\n\nPuedes poner cartas boca abajo para activarlas luego o boca arriba para activarlas de inmediato. No puedes usar otra si los 5 espacios están ocupados.',
+  },
+  zona_campo: {
+    titulo: 'Zona del Campo',
+    texto:
+      'Las Cartas Mágicas de Campo se juegan aquí. Cada jugador puede tener 1 Mágica de Campo en su lado del Campo.\n\nDesde el 14 de julio de 2014, ambos jugadores pueden controlar una Mágica de Campo al mismo tiempo. Si el texto usa la palabra "tu", solo afecta al controlador de esa Mágica de Campo.',
+  },
+  extra_deck: {
+    titulo: 'Zona de Deck Extra',
+    texto:
+      'Aquí se coloca tu Deck Extra boca abajo. Tu adversario no puede ver su contenido libremente.\n\nHistóricamente se llamó Zona del Deck de Fusión, pero el nombre cambió con la llegada de nuevos tipos de monstruos (Sincronía, Xyz, Enlace).',
+  },
+  deck: {
+    titulo: 'Zona del Deck',
+    texto:
+      'Contiene el Deck Principal de cada jugador, siempre boca abajo. Ningún jugador puede ver libremente las cartas de esta zona, salvo que un efecto de carta lo permita.',
+  },
+  gy: {
+    titulo: 'Cementerio',
+    texto:
+      'Zona donde se apilan cartas destruidas, descartadas, sacrificadas o usadas como material. La mayoría de las Cartas Mágicas y de Trampa también van aquí tras resolverse.\n\nTodas las cartas en Cementerio son información pública. Al revisarlo, no se puede reordenar su contenido.',
+  },
+  pendulo_izq: {
+    titulo: 'Zona de Péndulo (izquierda)',
+    texto:
+      'Con las reglas modernas, las Zonas de Péndulo forman parte de la Zona de Magia y Trampas y ocupan uno de sus 5 espacios.\n\nSi colocas una Carta de Péndulo aquí, funciona como Mágica de Péndulo para habilitar la Invocación por Péndulo.',
+  },
+  pendulo_der: {
+    titulo: 'Zona de Péndulo (derecha)',
+    texto:
+      'Segunda Zona de Péndulo, funciona igual que la izquierda: ocupa un espacio de Magia y Trampas.\n\nCuando hay dos escalas válidas (izquierda y derecha), puedes realizar Invocación por Péndulo según las reglas del formato.',
+  },
+};
+
+const reglaRetiro = {
+  titulo: 'Zona de Destierro (Retiro)',
+  texto:
+    'Esta zona no aparece impresa en el tablero. Las cartas Desterradas quedan fuera del uso normal.\n\nSi una carta es desterrada en lugar de mandada al Cementerio, no cumple condiciones que pidan "mandar al Cementerio". Por eso, efectos que exigen enviar cartas al Cementerio no funcionan si una regla activa las destierra en su lugar.',
+};
+---
+
+<Layout>
+  <PrimaryNav />
+
+  <main class="wrap">
+    <h1>Campo interactivo</h1>
+
+    <div class="grid">
+      <!-- Tablero -->
+      <section>
+        <div class="board" id="board">
+          <img
+            src={campo.src}
+            alt="Estructura del campo de Yu-Gi-Oh!"
+            id="campo-img"
+            draggable="false"
+          />
+
+          <!-- Overlay SVG: zonas clickeables como % -->
+          <svg
+            class="overlay"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+            id="overlay-svg"
+          >
+            {zonas.map((z) => (
+              <rect
+                class="zone-rect"
+                data-zona={z.id}
+                x={z.x}
+                y={z.y}
+                width={z.w}
+                height={z.h}
+                rx="0.5"
+                ry="0.5"
+              />
+            ))}
+          </svg>
+        </div>
+      </section>
+
+      <!-- Panel de información -->
+      <aside class="info" aria-live="polite" id="info-panel">
+        <div class="info-inner">
+          <h2 id="zona-titulo">Selecciona una zona</h2>
+          <p id="zona-texto">Toca cualquier parte del campo para ver su regla completa.</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Etiqueta flotante para móvil -->
+    <div class="toast" id="toast" aria-live="assertive"></div>
+  </main>
+
+  <script define:vars={{ reglasPorZona, reglaRetiro, zonas }}>
+    const titulo  = document.getElementById('zona-titulo');
+    const texto   = document.getElementById('zona-texto');
+    const icon    = document.getElementById('info-icon');
+    const panel   = document.getElementById('info-panel');
+    const toast   = document.getElementById('toast');
+    const svg     = document.getElementById('overlay-svg');
+    const rects   = svg.querySelectorAll('.zone-rect');
+
+    let zonaActiva = null;
+
+    function limpiarActivos() {
+      rects.forEach(r => r.classList.remove('active'));
+    }
+
+    function activarRect(idZona) {
+      limpiarActivos();
+      rects.forEach(r => {
+        if (r.dataset.zona === idZona) r.classList.add('active');
+      });
+    }
+
+    function mostrarInfo(info, idZona) {
+      titulo.textContent = info.titulo;
+      texto.textContent  = info.texto;
+      panel.classList.add('has-content');
+
+      // Toast en móvil: título breve
+      toast.textContent = info.titulo;
+      toast.classList.add('visible');
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove('visible'), 2200);
+    }
+
+    // Click / tap en SVG
+    svg.addEventListener('click', (e) => {
+      const rect = e.target.closest('.zone-rect');
+
+      if (!rect) {
+        // Clic fuera de zonas → Destierro
+        mostrarInfo(reglaRetiro, 'destierro');
+        limpiarActivos();
+        zonaActiva = null;
+        return;
+      }
+
+      const id = rect.dataset.zona;
+
+      if (id === zonaActiva) {
+        // Deseleccionar si se toca la misma zona
+        limpiarActivos();
+        zonaActiva = null;
+        titulo.textContent = 'Selecciona una zona';
+        texto.textContent  = 'Toca cualquier parte del campo para ver su regla completa.';
+        panel.classList.remove('has-content');
+        return;
+      }
+
+      zonaActiva = id;
+
+      if (id === 'destierro_1' || id === 'destierro_2') {
+        mostrarInfo(reglaRetiro, 'destierro');
+        activarRect(id);
+        return;
+      }
+
+      const info = reglasPorZona[id];
+      if (info) {
+        mostrarInfo(info, id);
+        activarRect(id);
+      }
+    });
+
+    // También capturar taps en la imagen (por si el SVG no los captura en algún device)
+    document.getElementById('board').addEventListener('click', (e) => {
+      if (e.target.tagName === 'IMG') {
+        mostrarInfo(reglaRetiro, 'destierro');
+        limpiarActivos();
+        zonaActiva = null;
+      }
+    });
+  </script>
+</Layout>
+
+<style>
+  :global(body) {
+    font-family: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+    background: radial-gradient(circle at top, #12213d, #0b1326 70%);
+    color: #f8fafc;
+    margin: 0;
+  }
+
+  .wrap {
+    width: min(1180px, 100%);
+    margin: 0 auto;
+    padding: 16px 12px 40px;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    margin: 0 0 14px;
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── Layout ── */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;   /* móvil: una columna */
+    gap: 14px;
+  }
+
+  @media (min-width: 760px) {
+    .grid {
+      grid-template-columns: minmax(380px, 1.35fr) minmax(280px, 1fr);
+      align-items: start;
+    }
+  }
+
+  /* ── Tablero ── */
+  .board {
+    position: relative;
+    width: 100%;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .board img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 2px solid #334155;
+    border-radius: 10px;
+    pointer-events: none; /* el SVG captura los eventos */
+  }
+
+  /* SVG encima de la imagen, cubre exactamente el mismo área */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    /* Necesario para que los % del viewBox 0 0 100 100 mapeen bien */
+  }
+
+  .zone-rect {
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 0.4;
+    transition: fill 0.15s ease, stroke 0.15s ease;
+  }
+
+  .zone-rect:hover {
+    fill: rgba(56, 189, 248, 0.12);
+    stroke: rgba(56, 189, 248, 0.5);
+  }
+
+  .zone-rect.active {
+    fill: rgba(56, 189, 248, 0.28);
+    stroke: #38bdf8;
+  }
+
+  /* ── Panel info ── */
+  .info {
+    background: linear-gradient(160deg, rgba(17,24,39,0.98), rgba(15,23,42,0.98));
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 16px;
+    min-height: 120px;
+    box-shadow: 0 12px 24px rgba(3,10,25,0.3);
+    transition: border-color 0.2s;
+  }
+
+  .info.has-content {
+    border-color: #38bdf8;
+  }
+
+  .info-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .info-icon {
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+
+  .info h2 {
+    margin: 0;
+    font-size: clamp(0.95rem, 3vw, 1.15rem);
+    color: #67e8f9;
+  }
+
+  .info p {
+    margin: 0;
+    line-height: 1.65;
+    white-space: pre-line;
+    font-size: clamp(0.82rem, 2.5vw, 0.95rem);
+    color: #cbd5e1;
+  }
+
+  /* ── Toast móvil ── */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(14,165,233,0.92);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 999;
+    max-width: 90vw;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .toast.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Ocultar toast en pantallas grandes donde el panel ya es visible */
+  @media (min-width: 760px) {
+    .toast { display: none; }
+  }
+</style>
